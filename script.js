@@ -91,15 +91,11 @@ function play() {
     document.querySelectorAll('.pipe_sprite').forEach(pipe=>{
         let pipe_props = pipe.getBoundingClientRect();
         bird_props = bird.getBoundingClientRect();
+        let beforeHeight = pipe_props.height * 0.1;
+        let afterHeight = pipe_props.height * 0.1;
 
-        // Include ::before e ::after nel rettangolo del tubo
-        let beforeHeight = pipe_props.height * 0.1; // altezza ::before
-        let afterHeight = pipe_props.height * 0.1;  // altezza ::after
-
-        let pipe_top = pipe_props.top - beforeHeight;          // include ::before
-        let pipe_bottom = pipe_props.bottom + afterHeight;     // include ::after
-
-        // Collisione con l'uccellino
+        let pipe_top = pipe_props.top - beforeHeight;
+        let pipe_bottom = pipe_props.bottom + afterHeight;
         if(
             bird_props.left < pipe_props.right &&
             bird_props.right > pipe_props.left &&
@@ -109,18 +105,12 @@ function play() {
             endGame();
             return;
         }
-
-        // Aggiorna punteggio
         if(pipe_props.right < bird_props.left && pipe_props.right + move_speed >= bird_props.left && pipe.increase_score==='1'){
             score_val.innerHTML = Number(score_val.innerHTML)+1;
             pipe.increase_score='0';
             sound_point.play();
         }
-
-        // Muove il tubo
         pipe.style.left = pipe_props.left - move_speed + 'px';
-
-        // Rimuove se fuori dallo schermo
         if(pipe_props.right <= 0){ pipe.remove(); }
     });
 
@@ -181,3 +171,4 @@ function endGame() {
     document.querySelector('.score').style.display = 'none';
     lastScoreSpan.textContent = score_val.innerHTML;
 }
+
