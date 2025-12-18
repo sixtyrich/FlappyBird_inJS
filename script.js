@@ -4,7 +4,6 @@ let bird = document.querySelector('.bird');
 let img = document.getElementById('bird-1');
 let sound_point = new Audio('sounds effect/point.mp3');
 let sound_die = new Audio('sounds effect/die.mp3');
-
 let bg_music = new Audio('sounds effect/bg.mp3');
 bg_music.loop = true; 
 bg_music.volume = 0.4;
@@ -195,6 +194,7 @@ function endGame() {
     document.querySelector('.score').style.display = 'none';
     lastScoreSpan.textContent = score_val.innerHTML;
 }
+
 
 
 
