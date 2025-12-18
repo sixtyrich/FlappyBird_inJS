@@ -69,32 +69,35 @@ function startGame() {
 
 playBtn.addEventListener('click', startGame);
 
-// ================== TASTI + MOUSE ==================
-document.addEventListener('keydown', e=>{
-    if((e.code==='Space'||e.key===' ') && game_state==='Play'){
-        bird_dy = -7.6;
-        img.src = skins[currentSkin].replace('.png','-2.png');
-    }
-});
-
-document.addEventListener('keyup', e=>{
-    if((e.code==='Space'||e.key===' ') && game_state==='Play'){
-        img.src = skins[currentSkin];
-    }
-});
-
-document.addEventListener('mousedown', e=>{
+// ================== TASTI + MOUSE + TOUCH ==================
+function flap() {
     if(game_state==='Play'){
         bird_dy = -7.6;
         img.src = skins[currentSkin].replace('.png','-2.png');
     }
-});
+}
 
-document.addEventListener('mouseup', e=>{
+function stopFlap() {
     if(game_state==='Play'){
         img.src = skins[currentSkin];
     }
+}
+
+document.addEventListener('keydown', e => {
+    if(e.code === 'Space' || e.key === ' '){
+        flap();
+    }
 });
+document.addEventListener('keyup', e => {
+    if(e.code === 'Space' || e.key === ' '){
+        stopFlap();
+    }
+});
+
+document.addEventListener('mousedown', flap);
+document.addEventListener('mouseup', stopFlap);
+document.addEventListener('touchstart', e => { e.preventDefault(); flap(); });
+document.addEventListener('touchend', e => { e.preventDefault(); stopFlap(); });
 
 // ================== GAME LOOP ==================
 function play() {
@@ -184,5 +187,6 @@ function endGame() {
     document.querySelector('.score').style.display = 'none';
     lastScoreSpan.textContent = score_val.innerHTML;
 }
+
 
 
