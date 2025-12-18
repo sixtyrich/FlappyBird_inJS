@@ -1,0 +1,246 @@
+/* ================== GLOBAL ================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================== BACKGROUND ================== */
+.background {
+    height: 100vh;
+    width: 100vw;
+    background: url('images/background-img.png') repeat-x;
+    background-size: cover;
+    animation: moveBg 20s linear infinite;
+}
+
+/* ================== BIRD ================== */
+.bird {
+    height: 100px;
+    width: 130px;
+    position: fixed;
+    top: 40vh;
+    left: 30vw;
+    z-index: 100;
+}
+
+.skin-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.skin-selector button {
+    padding: 5px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255,255,255,0.8);
+    color: black;
+    transition: transform 0.2s;
+}
+
+.skin-selector button:hover {
+    transform: scale(1.2);
+}
+
+#menu-bird {
+    width: 100px;
+    height: auto;
+}
+
+/* ================== PIPE ================== */
+.pipe_sprite {
+    position: fixed;
+    left: 100vw;
+    width: 5vw;      /* leggermente più largo → più difficile */
+    height: 65vh;
+    background: linear-gradient(to bottom, #a8ff60, #4cd137, #00b300);
+    border: 2px solid black;
+    border-radius: 4px;
+    box-shadow: inset -3px -3px 8px rgba(0,0,0,0.2),
+                inset 3px 3px 8px rgba(255,255,255,0.2);
+}
+
+/* BORDO SUPERIORE */
+.pipe_sprite::before {
+    content: "";
+    position: absolute;
+    top: -10%;              /* leggermente sopra il tubo */
+    left: -10%;             /* più largo del tubo */
+    width: 120%;
+    height: 10%;            /* altezza del bordo superiore */
+    background: linear-gradient(to bottom, #7fff40, #4cd137, #2aa300);
+    border: 2px solid black;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+/* BORDO INFERIORE */
+.pipe_sprite::after {
+    content: "";
+    position: absolute;
+    bottom: -10%;           /* leggermente sotto il tubo */
+    left: -10%;             /* più largo del tubo */
+    width: 120%;
+    height: 10%;            /* altezza del bordo inferiore */
+    background: linear-gradient(to top, #7fff40, #4cd137, #2aa300);
+    border: 2px solid black;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* ================== SCORE WIDGET ================== */
+.score {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fffa70;
+    text-shadow: 0 0 5px #fff, 0 0 10px #ffd700;
+    
+    background: rgba(0,0,0,0.6);
+    border: 2px solid #ffd700;
+    border-radius: 15px;
+    padding: 15px 30px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 4px 8px rgba(0,0,0,0.5);
+    
+    pointer-events: none;
+    z-index: 101;
+}
+
+.score_val {
+    color: #fffa70;
+    font-weight: bold;
+}
+
+
+/* ================== MENU ================== */
+.menu {
+    position: fixed;
+    inset: 0;
+    background: url('images/background-img.png') repeat-x;
+    background-size: cover;
+    animation: moveBg 20s linear infinite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    color: white;
+    font-family: Arial;
+    pointer-events: all;
+}
+
+/* ---------- MENU TITLE ---------- */
+.menu h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px black;
+}
+
+/* ---------- MENU BIRD ---------- */
+.menu-bird {
+    width: 120px;
+    margin: 20px 0;
+    animation: fly 1s ease-in-out infinite;
+}
+
+/* ---------- FLY ANIMATION ---------- */
+@keyframes fly {
+    0%   { transform: translateY(0) rotate(0deg); }
+    25%  { transform: translateY(-20px) rotate(-10deg); }
+    50%  { transform: translateY(0) rotate(0deg); }
+    75%  { transform: translateY(-15px) rotate(-5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* ---------- MENU BUTTON ---------- */
+.menu button {
+    padding: 15px 40px;
+    font-size: 22px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 20px;
+    transition: transform 0.2s;
+}
+
+.menu button:hover {
+    transform: scale(1.1);
+}
+
+/* ---------- WIDGETS ---------- */
+.widgets {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0;
+    gap: 10px;
+}
+
+.widgets p,
+.widgets label {
+    text-shadow: 1px 1px 3px black;
+}
+
+.widgets select,
+.widgets button {
+    padding: 8px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+/* ================== BACKGROUND ANIMATION ================== */
+@keyframes moveBg {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -2000px 0;
+    }
+}
+
+/* ================== RESPONSIVE ================== */
+@media only screen and (max-width: 1080px) {
+
+    .score {
+        font-size: 8vh;
+    }
+
+    .bird {
+        width: 120px;
+        height: 90px;
+    }
+
+    .pipe_sprite {
+        width: 14vw;
+    }
+
+    .menu h1 {
+        font-size: 3em;
+    }
+
+    .menu-bird {
+        width: 90px;
+    }
+
+    .widgets select,
+    .widgets button {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    .menu button {
+        font-size: 18px;
+        padding: 12px 30px;
+    }
+}
