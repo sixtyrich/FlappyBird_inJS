@@ -69,7 +69,7 @@ function startGame() {
 
 playBtn.addEventListener('click', startGame);
 
-// ================== TASTI ==================
+// ================== TASTI + MOUSE ==================
 document.addEventListener('keydown', e=>{
     if((e.code==='Space'||e.key===' ') && game_state==='Play'){
         bird_dy = -7.6;
@@ -79,6 +79,19 @@ document.addEventListener('keydown', e=>{
 
 document.addEventListener('keyup', e=>{
     if((e.code==='Space'||e.key===' ') && game_state==='Play'){
+        img.src = skins[currentSkin];
+    }
+});
+
+document.addEventListener('mousedown', e=>{
+    if(game_state==='Play'){
+        bird_dy = -7.6;
+        img.src = skins[currentSkin].replace('.png','-2.png');
+    }
+});
+
+document.addEventListener('mouseup', e=>{
+    if(game_state==='Play'){
         img.src = skins[currentSkin];
     }
 });
@@ -171,4 +184,5 @@ function endGame() {
     document.querySelector('.score').style.display = 'none';
     lastScoreSpan.textContent = score_val.innerHTML;
 }
+
 
