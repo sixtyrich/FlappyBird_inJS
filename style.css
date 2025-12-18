@@ -211,10 +211,6 @@
 /* ================== RESPONSIVE ================== */
 @media only screen and (max-width: 1080px) {
 
-    .score {
-        font-size: 8vh;
-    }
-
     .bird {
         width: 120px;
         height: 90px;
@@ -243,5 +239,6 @@
         padding: 12px 30px;
     }
 }
+
 
 
