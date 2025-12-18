@@ -56,7 +56,7 @@
 .pipe_sprite {
     position: fixed;
     left: 100vw;
-    width: 5vw;      /* leggermente più largo → più difficile */
+    width: 5vw;
     height: 65vh;
     background: linear-gradient(to bottom, #a8ff60, #4cd137, #00b300);
     border: 2px solid black;
@@ -69,10 +69,10 @@
 .pipe_sprite::before {
     content: "";
     position: absolute;
-    top: -10%;              /* leggermente sopra il tubo */
-    left: -10%;             /* più largo del tubo */
+    top: -10%;
+    left: -10%;
     width: 120%;
-    height: 10%;            /* altezza del bordo superiore */
+    height: 10%;
     background: linear-gradient(to bottom, #7fff40, #4cd137, #2aa300);
     border: 2px solid black;
     border-top-left-radius: 8px;
@@ -83,10 +83,10 @@
 .pipe_sprite::after {
     content: "";
     position: absolute;
-    bottom: -10%;           /* leggermente sotto il tubo */
-    left: -10%;             /* più largo del tubo */
+    bottom: -10%;
+    left: -10%;
     width: 120%;
-    height: 10%;            /* altezza del bordo inferiore */
+    height: 10%;
     background: linear-gradient(to top, #7fff40, #4cd137, #2aa300);
     border: 2px solid black;
     border-bottom-left-radius: 8px;
@@ -244,3 +244,4 @@
         padding: 12px 30px;
     }
 }
+
