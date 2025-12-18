@@ -35,20 +35,29 @@ function updateSkin() {
     img.src = skins[currentSkin];
 }
 
-prevSkinBtn.addEventListener('click', () => {
+addTapListener(prevSkinBtn, () => {
     currentSkin = (currentSkin - 1 + skins.length) % skins.length;
     updateSkin();
 });
-nextSkinBtn.addEventListener('click', () => {
+
+addTapListener(nextSkinBtn, () => {
     currentSkin = (currentSkin + 1) % skins.length;
     updateSkin();
 });
 
-muteBtn.addEventListener('click', () => {
+addTapListener(muteBtn, () => {
     isMuted = !isMuted;
     bg_music.muted = isMuted;
     muteBtn.textContent = isMuted ? "🎵 Musica: OFF" : "🎵 Musica: ON";
 });
+
+function addTapListener(element, callback){
+    element.addEventListener('click', callback);
+    element.addEventListener('touchstart', e => {
+        e.preventDefault();
+        callback();
+    });
+}
 
 // ================== START GAME ==================
 function startGame() {
@@ -66,7 +75,7 @@ function startGame() {
     play();
 }
 
-playBtn.addEventListener('click', startGame);
+addTapListener(playBtn, startGame);
 
 // ================== TASTI + MOUSE + TOUCH ==================
 function flap() {
@@ -186,6 +195,7 @@ function endGame() {
     document.querySelector('.score').style.display = 'none';
     lastScoreSpan.textContent = score_val.innerHTML;
 }
+
 
 
 
